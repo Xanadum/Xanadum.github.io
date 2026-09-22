@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<title>Fengze Jia</title>
+<meta name="description" content="Fengze Jia, mathematics undergraduate at The Ohio State University working on robot learning. Paper, CV and contact.">
+<link rel="canonical" href="https://xanadum.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fengze Jia">
+<meta property="og:description" content="Why a compressed robot policy that passes offline evaluation can still fail in closed loop. Paper, CV and contact.">
+<meta property="og:url" content="https://xanadum.github.io/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141619" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&amp;family=Space+Grotesk:wght@600&amp;display=swap">
+<style>
+  :root {
+    --paper: #ffffff;
+    --ink: #16181c;
+    --quiet: #585c62;
+    --rule: #e2e0db;
+    --tint: #f4f3f0;
+    --link: #2f6b4f;
+    --teacher: #8c9096;
+    --student: #b0472f;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #141619;
+      --ink: #eceae6;
+      --quiet: #a4a8ad;
+      --rule: #2b2f34;
+      --tint: #1c1f23;
+      --link: #7dc4a1;
+      --teacher: #7e838a;
+      --student: #e4805f;
+    }
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 1.0625rem/1.6 "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  main { max-width: 40rem; margin: 0 auto; padding: 3.25rem 1.375rem 4.5rem; }
+  h1, h2 { font-family: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif; font-weight: 600; }
+  h1 { font-size: 2.625rem; line-height: 1.05; letter-spacing: -0.025em; margin: 0 0 1.125rem; }
+  h2 { font-size: 1.3125rem; line-height: 1.3; letter-spacing: -0.01em; margin: 0 0 0.5rem; }
+  p { margin: 0 0 1rem; }
+  .lead { font-size: 1.1875rem; line-height: 1.5; margin-bottom: 0.625rem; }
+  .status { color: var(--quiet); margin: 0; }
+  a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 2px; }
+  ul { list-style: none; margin: 0; padding: 0; }
+
+  .actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.75rem; }
+  .btn {
+    display: inline-block;
+    padding: 0.7rem 0.95rem;
+    border: 1.5px solid var(--ink);
+    border-radius: 3px;
+    color: var(--ink);
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+  }
+  .btn:hover { border-color: var(--link); color: var(--link); }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { background: var(--link); border-color: var(--link); color: var(--paper); }
+
+  section { margin-top: 3.5rem; }
+  .venue { color: var(--quiet); font-size: 0.96875rem; margin-bottom: 1.125rem; }
+  figure { margin: 1.75rem 0 1.5rem; }
+  .chart { display: block; width: 100%; max-width: 26rem; height: auto; }
+  .chart text { font-family: "IBM Plex Sans", system-ui, sans-serif; font-size: 13px; fill: var(--ink); font-variant-numeric: tabular-nums; }
+  .chart .val { fill: var(--quiet); }
+  .chart .val-s { fill: var(--student); font-weight: 600; }
+  .chart .t { fill: var(--teacher); }
+  .chart .s { fill: var(--student); }
+  .chart .axis { stroke: var(--rule); stroke-width: 1; }
+  figcaption { color: var(--quiet); font-size: 0.9375rem; line-height: 1.5; margin-top: 0.75rem; max-width: 34em; }
+  .links { display: flex; flex-wrap: wrap; gap: 0.375rem 1.5rem; }
+  details { margin-top: 1rem; }
+  summary { cursor: pointer; color: var(--link); width: max-content; }
+  pre { margin: 0.75rem 0 0; padding: 0.875rem 1rem; background: var(--tint); border-radius: 3px; overflow-x: auto; font-size: 0.8125rem; line-height: 1.55; }
+  code { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; }
+  .work li { margin-bottom: 1rem; }
+  .work li:last-child { margin-bottom: 0; }
+  .contact li { margin-bottom: 0.375rem; }
+  @media (min-width: 48rem) {
+    main { padding-top: 5.5rem; }
+    h1 { font-size: 3.25rem; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Fengze Jia</h1>
+    <p class="lead">Mathematics undergraduate at The Ohio State University, graduating May 2027. My current research asks why a compressed robot policy that passes offline evaluation can still fail in closed loop, and what repairs it.</p>
+    <p class="status">Applying to MS programs in robotics and machine learning for Fall 2027.</p>
+    <ul class="actions">
+      <li id="cv-item" hidden><a class="btn btn-primary" href="cv.pdf">CV (PDF)</a></li>
+      <li><a id="paper-btn" class="btn btn-primary" href="https://arxiv.org/abs/2609.23048">Paper</a></li>
+      <li><a class="btn" href="mailto:jia.747@osu.edu">Email</a></li>
+    </ul>
+  </header>
+
+  <section aria-labelledby="paper-title">
+    <h2 id="paper-title">Anatomy of a Closed-Loop Collapse: A Causal Case Study of a Compressed VLA Policy</h2>
+    <p class="venue">Poster at the IROS 2026 Workshop on Building Scalable Infrastructure for Robot Learning (ScaleInfra), Pittsburgh, October 1, 2026.</p>
+    <p>I distilled Octo-Base, a 12-layer generalist robot policy, into an 8-layer student. The student passes the offline validation checks its model family provides, then succeeds in 0 of 72 closed-loop trials of a simulated WidowX pick-and-place task, where the teacher succeeds in 40.</p>
+
+    <figure>
+      <svg class="chart" viewBox="0 0 340 192" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">Episodes reaching each stage, teacher versus 8-layer student</title>
+        <desc id="chart-desc">Out of 24 episodes. Moved the eggplant: teacher 20, student 18. Grasped it: teacher 20, student 11. Held the grasp: teacher 19, student 11. Placed it in the basket: teacher 15, student 0.</desc>
+        <rect class="t" x="0" y="3" width="11" height="11" rx="1.5"/>
+        <text x="17" y="13">Teacher, 12 layers</text>
+        <rect class="s" x="152" y="3" width="11" height="11" rx="1.5"/>
+        <text x="169" y="13">Student, 8 layers</text>
+        <line class="axis" x1="86.5" y1="28" x2="86.5" y2="190"/>
+
+        <text x="0" y="52">Moved</text>
+        <rect class="t" x="87" y="34" width="200" height="12"/>
+        <text class="val" x="293" y="44.5">20</text>
+        <rect class="s" x="87" y="49" width="180" height="12"/>
+        <text class="val-s" x="273" y="59.5">18</text>
+
+        <text x="0" y="93">Grasped</text>
+        <rect class="t" x="87" y="75" width="200" height="12"/>
+        <text class="val" x="293" y="85.5">20</text>
+        <rect class="s" x="87" y="90" width="110" height="12"/>
+        <text class="val-s" x="203" y="100.5">11</text>
+
+        <text x="0" y="134">Held</text>
+        <rect class="t" x="87" y="116" width="190" height="12"/>
+        <text class="val" x="283" y="126.5">19</text>
+        <rect class="s" x="87" y="131" width="110" height="12"/>
+        <text class="val-s" x="203" y="141.5">11</text>
+
+        <text x="0" y="175">In basket</text>
+        <rect class="t" x="87" y="157" width="150" height="12"/>
+        <text class="val" x="243" y="167.5">15</text>
+        <rect class="s" x="87" y="172" width="2.5" height="12"/>
+        <text class="val-s" x="95.5" y="182.5">0</text>
+      </svg>
+      <figcaption>Episodes, out of 24, that reach each stage of the task. The student falls behind stage by stage, then never gets the eggplant into the basket.</figcaption>
+    </figure>
+
+    <p>Four standard fixes fail under matched controls. Replacing half of each training batch with successful teacher rollouts from the deployment environment restores parity with the teacher on held-out episodes: 18 of 36 against 17 of 36.</p>
+
+    <ul class="links">
+      <li><a href="https://arxiv.org/abs/2609.23048">Abstract</a></li>
+      <li><a href="https://arxiv.org/pdf/2609.23048">PDF</a></li>
+      <li><a href="https://github.com/Xanadum/closed-loop-collapse">Code and experiment records</a></li>
+    </ul>
+    <details>
+      <summary>Cite this paper</summary>
+<pre><code>@misc{jia2026anatomy,
+  title         = {Anatomy of a Closed-Loop Collapse: A Causal Case
+                   Study of a Compressed VLA Policy},
+  author        = {Jia, Fengze},
+  year          = {2026},
+  eprint        = {2609.23048},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.RO},
+  url           = {https://arxiv.org/abs/2609.23048}
+}</code></pre>
+    </details>
+  </section>
+
+  <section aria-labelledby="other-title">
+    <h2 id="other-title">Other work</h2>
+    <ul class="work">
+      <li>Directed topology and linear programming, with Prof. Sanjeevi Krishnan (Ohio State Mathematics). Talk at the Young Mathematicians Conference, 2025.</li>
+      <li>Perception for the SAE/GM AutoDrive Challenge II with Buckeye AutoDrive: a traffic-light and speed-sign <a href="https://huggingface.co/datasets/Xanadom1/auto_drive_traffice_light">dataset</a> and <a href="https://huggingface.co/Xanadom1/AutoDrive_TrafficLight_Baseline_V1">detector</a>, both on Hugging Face.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="contact-title">
+    <h2 id="contact-title">Contact</h2>
+    <ul class="contact">
+      <li><a href="mailto:jia.747@osu.edu">jia.747@osu.edu</a></li>
+      <li><a href="https://github.com/Xanadum">github.com/Xanadum</a></li>
+      <li><a href="https://huggingface.co/Xanadom1">huggingface.co/Xanadom1</a></li>
+      <li><a href="https://orcid.org/0009-0002-1907-2162">orcid.org/0009-0002-1907-2162</a></li>
+    </ul>
+  </section>
+</main>
+<script>
+  // The CV button stays hidden until cv.pdf exists next to this page;
+  // once it does, CV becomes the primary button and Paper turns secondary.
+  (function () {
+    var item = document.getElementById("cv-item");
+    var paper = document.getElementById("paper-btn");
+    if (!item || !paper || !window.fetch) return;
+    fetch("cv.pdf", { method: "HEAD", cache: "no-store" })
+      .then(function (r) {
+        if (!r.ok) return;
+        item.hidden = false;
+        paper.classList.remove("btn-primary");
+      })
+      .catch(function () {});
+  })();
+</script>
+</body>
+</html>
