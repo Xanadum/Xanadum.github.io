@@ -56,6 +56,8 @@
     --link: #2f6b4f;
     --teacher: #8c9096;
     --student: #b0472f;
+    --bal-start: #8c9096;
+    --bal-gain: #1f7a52;
     color-scheme: light dark;
   }
   @media (prefers-color-scheme: dark) {
@@ -68,6 +70,8 @@
       --link: #7dc4a1;
       --teacher: #7e838a;
       --student: #e4805f;
+      --bal-start: #70757c;
+      --bal-gain: #48b582;
     }
   }
   *, *::before, *::after { box-sizing: border-box; }
@@ -125,6 +129,31 @@
   .work li { margin-bottom: 1rem; }
   .work li:last-child { margin-bottom: 0; }
   .contact li { margin-bottom: 0.375rem; }
+  h3 { font-family: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif; font-weight: 600; font-size: 1.125rem; line-height: 1.35; margin: 0 0 0.25rem; }
+  .balance { margin: 1.5rem 0; }
+  .bal-nums, .bal-bar { display: grid; grid-template-columns: 28.37fr 71.63fr; column-gap: 2px; }
+  .bal-nums { align-items: start; margin-bottom: 0.625rem; }
+  .bal-nums > div { min-width: 0; padding-right: 0.5rem; }
+  .bal-num { display: block; font-family: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif; font-weight: 600; font-size: clamp(1.125rem, 5.2vw, 2rem); line-height: 1.15; letter-spacing: -0.01em; }
+  .bal-cap { display: block; color: var(--quiet); font-size: 0.875rem; line-height: 1.35; margin-top: 0.1875rem; }
+  .bal-bar > span { height: 14px; forced-color-adjust: none; }
+  .bal-start { background: var(--bal-start); border-radius: 7px 0 0 7px; }
+  .bal-gain { background: var(--bal-gain); border-radius: 0 7px 7px 0; transform-origin: left center; }
+  .balance.is-waiting .bal-gain { transform: scaleX(0); }
+  .balance.is-grown .bal-gain { transition: transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .bal-total { color: var(--quiet); font-size: 0.9375rem; text-align: right; margin: 0.5rem 0 0; }
+  .bal-total b { color: var(--ink); font-weight: 600; }
+  .facts { margin: 0 0 1.25rem; }
+  .facts > div { display: grid; grid-template-columns: 6rem 1fr; column-gap: 1rem; margin-bottom: 0.5rem; }
+  .facts dt { color: var(--quiet); }
+  .facts dd { margin: 0; }
+  @media (max-width: 26rem) {
+    .facts > div { grid-template-columns: 1fr; margin-bottom: 0.75rem; }
+    .facts dt { font-size: 0.9375rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .balance .bal-gain { transform: none; transition: none; }
+  }
   @media (min-width: 48rem) {
     main { padding-top: 5.5rem; }
     h1 { font-size: 3.25rem; }
@@ -211,7 +240,7 @@
   <section aria-labelledby="other-title">
     <h2 id="other-title">Other research</h2>
     <ul class="work">
-      <li>Directed topology and linear programming, with Prof. <a href="https://math.osu.edu/people/krishnan.118">Sanjeevi Krishnan</a> (Ohio State Mathematics), since 2025.</li>
+      <li>Directed topology and linear programming, with Prof. <a href="https://math.osu.edu/people/krishnan.118">Sanjeevi Krishnan</a> (Ohio State Mathematics), since fall 2024.</li>
       <li>Perception for the SAE/GM AutoDrive Challenge II with Buckeye AutoDrive, advised by Prof. <a href="https://www.bu.edu/eng/profile/wei-lun-chao-phd">Wei-Lun Chao</a>: a traffic-light <a href="https://huggingface.co/datasets/Xanadom1/auto_drive_traffice_light">dataset</a> and <a href="https://huggingface.co/Xanadom1/AutoDrive_TrafficLight_Baseline_V1">classifier</a>, both on Hugging Face.</li>
       <li>Reinforcement learning: PPO baselines and a multi-policy-gradient variant in custom environments, with Prof. <a href="https://math.osu.edu/people/hanveiga.1">Maria Han Veiga</a> (Ohio State Mathematics), summer 2025.</li>
     </ul>
@@ -222,6 +251,35 @@
     <ul class="work">
       <li>Talk: “Linear Programming for Directed Cycle Detection.” Young Mathematicians Conference, The Ohio State University, July&nbsp;30 to August&nbsp;1, 2025 (<a href="https://ymc.osu.edu/sites/default/files/2025-07/2025-07-29%20Young%20Mathematicians%20Conference%202025%20Abstract%20Book.pdf#page=34">abstract in the conference program</a>).</li>
       <li>Poster: “Application of Denoising Potential on MNIST Dataset.” OSU Mathematics CYCLE program, 2025; co-first author with Chunyu Gu, with Daniel Tcheurekdjian.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="awards-title">
+    <h2 id="awards-title">Honors and awards</h2>
+    <h3>Second place worldwide, 2026 CME Group University Trading Challenge</h3>
+    <p class="venue">With The Ohio State University team. Four weeks of simulated futures trading, October 2026.</p>
+
+    <figure class="balance" id="balance">
+      <div class="bal-nums">
+        <div><span class="bal-num">$1.00M</span><span class="bal-cap">Starting balance</span></div>
+        <div><span class="bal-num">+$2.52M</span><span class="bal-cap">Gained in four weeks, +252%</span></div>
+      </div>
+      <div class="bal-bar" aria-hidden="true">
+        <span class="bal-start" title="Starting balance: $1,000,000"></span>
+        <span class="bal-gain" title="Trading gain: $2,524,433"></span>
+      </div>
+      <p class="bal-total">Final balance <b>$3.52M</b></p>
+      <figcaption>The team’s simulated account, drawn to scale: the starting balance, and what four weeks of trading added to it.</figcaption>
+    </figure>
+
+    <dl class="facts">
+      <div><dt>Markets</dt><dd>Silver, Treasury, corn and energy futures.</dd></div>
+      <div><dt>Approach</dt><dd>Mainly event-driven, based on analysis of FOMC meetings, CPI and USDA data.</dd></div>
+      <div><dt>My part</dt><dd>I independently executed part of the team’s trades and took part in managing the team.</dd></div>
+    </dl>
+
+    <ul class="links">
+      <li><a href="https://www.cmegroup.com/events/university-trading-challenge/2026-trading-challenge.html">Official final standings</a></li>
     </ul>
   </section>
 
@@ -254,6 +312,22 @@
         paper.classList.remove("btn-primary");
       })
       .catch(function () {});
+  })();
+
+  // The green part of the balance bar grows once, the first time it scrolls into view.
+  // Without this script, or with reduced motion, the bar is simply shown complete.
+  (function () {
+    var fig = document.getElementById("balance");
+    if (!fig || !("IntersectionObserver" in window)) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    fig.classList.add("is-waiting");
+    var seen = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      fig.classList.add("is-grown");
+      fig.classList.remove("is-waiting");
+      seen.disconnect();
+    }, { threshold: 0.6 });
+    seen.observe(fig);
   })();
 </script>
 </body>
